@@ -1,10 +1,10 @@
-import { renderTasks } from './renderer.js';
-import { setItem } from './storage.js';
-import { createTaskData, getTasksListData } from './tasksGateway.js';
+import { renderTasks } from './renderer';
+import { setItem } from './storage';
+import { createTaskData, getTasksListData } from './tasksGateway';
 
 const inputElement = document.querySelector('.task-input');
 
-export const onCreateTask = event => {
+export const onCreateTask = () => {
   const { value } = inputElement;
   if (value === '') {
     return;
@@ -18,7 +18,7 @@ export const onCreateTask = event => {
 
   createTaskData(newTask)
     .then(() => getTasksListData())
-    .then(newTasksList => {
+    .then((newTasksList) => {
       setItem('tasksList', newTasksList);
       renderTasks();
     });

@@ -1,11 +1,15 @@
-import { getItem, setItem } from './storage.js';
-import { renderTasks } from './renderer.js';
-import { getTasksListData, updateTaskData, deleteTaskData } from './tasksGateway.js';
+import { getItem, setItem } from './storage';
+import { renderTasks } from './renderer';
+import {
+  getTasksListData,
+  updateTaskData,
+  deleteTaskData,
+} from './tasksGateway';
 
-const updateTask = e => {
+const updateTask = (e) => {
   const taskId = e.target.dataset.id;
   const tasksList = getItem('tasksList');
-  const { text } = tasksList.find(task => task.id === taskId);
+  const { text } = tasksList.find((task) => task.id === taskId);
   const done = e.target.checked;
 
   const updatedTask = {
@@ -15,18 +19,18 @@ const updateTask = e => {
 
   updateTaskData(taskId, updatedTask)
     .then(() => getTasksListData())
-    .then(newTasksList => {
+    .then((newTasksList) => {
       setItem('tasksList', newTasksList);
       renderTasks();
     });
 };
 
-const deleteTask = e => {
+const deleteTask = (e) => {
   const taskId = e.target.dataset.id;
 
   deleteTaskData(taskId)
     .then(() => getTasksListData())
-    .then(newTasksList => {
+    .then((newTasksList) => {
       setItem('tasksList', newTasksList);
       renderTasks();
     });

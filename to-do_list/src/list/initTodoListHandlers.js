@@ -1,5 +1,5 @@
-import { onListClick } from './taskClickedHandler.js';
-import { onCreateTask } from './createTaskHandler.js';
+import { onListClick } from './taskClickedHandler';
+import { onCreateTask } from './createTaskHandler';
 
 export const initTodoListHandlers = () => {
   const todoListElem = document.querySelector('.list');
