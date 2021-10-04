@@ -1,15 +1,15 @@
-import { renderTasks } from './renderer';
-import { setItem } from './storage';
-import { createTaskData, getTasksListData } from './tasksGateway';
+import { renderTasks } from "./renderer";
+import { setItem } from "./storage";
+import { createTaskData, getTasksListData } from "./tasksGateway";
 
-const inputElement = document.querySelector('.task-input');
+const inputElement = document.querySelector(".task-input");
 
 export const onCreateTask = () => {
   const { value } = inputElement;
-  if (value === '') {
+  if (value === "") {
     return;
   }
-  inputElement.value = '';
+  inputElement.value = "";
 
   const newTask = {
     text: value,
@@ -19,7 +19,7 @@ export const onCreateTask = () => {
   createTaskData(newTask)
     .then(() => getTasksListData())
     .then((newTasksList) => {
-      setItem('tasksList', newTasksList);
+      setItem("tasksList", newTasksList);
       renderTasks();
     });
 };
